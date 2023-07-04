@@ -1,7 +1,5 @@
 import fnmatch
-
 from flask import Flask, render_template, request
-
 from flask_restful import Api, Resource
 from mynet_scraper.scraper import MynetScraper
 
@@ -10,7 +8,7 @@ from mynet_scraper.scraper import MynetScraper
 
 app = Flask(__name__)
 api = Api(app)
-base_url = "127.0.0.1:5000"
+BASE_URL = "127.0.0.1:5000"
 
 scraper = MynetScraper()
 link_list = scraper.get_link()
@@ -18,6 +16,11 @@ link_list = scraper.get_link()
 
 @app.route("/", methods=["GET", "POST"])
 def index():
+    """_summary_
+
+    Returns:
+        _type_: _description_
+    """
     if request.method == "POST":
         share_code = request.form.get("share_code")
         for link in link_list:
@@ -35,7 +38,15 @@ def index():
 @app.route(
     "/<string:name>",
 )
-def anaSayfa(name):
+def ana_sayfa(name):
+    """_summary_
+
+    Args:
+        name (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     name = name.split()
     print(name)
     share = []
@@ -47,7 +58,17 @@ def anaSayfa(name):
 
 
 class Dict(Resource):
+    """_summary_
+
+    Args:
+        Resource (_type_): _description_
+    """
     def get(self):
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
         return {"key": "value"}
 
 
