@@ -9,11 +9,9 @@ import requests
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 
-from mynet_scraper.models import Stock
-
+from models import Stock
 
 HTML = "https://finans.mynet.com/borsa/hisseler/"
-
 
 class MynetScraper:
     """

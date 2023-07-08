@@ -15,7 +15,13 @@ install_requirements:
 
 run:
 	${PYTHON3} main.py
-
+venv2:
+	rm -rf __pycache__
+	rm -rf $(VENV)
+make_requirements:
+	PIP3 freeze > requirements.txt
+venv:
+	source ${VENV}/bin/activate
 
 clear:
 	PIP3 uninstall beautifulsoup4
@@ -42,11 +48,3 @@ clear:
 	PIP3 uninstall aniso8601
 	PIP3 uninstall Flask-RESTful
 	PIP3 uninstall pytz
-make_requirements:
-	PIP3 uninstall pip
-venv2:
-	rm -rf __pycache__
-	rm -rf $(VENV)
-	PIP3 freeze > requirements.txt
-venv:
-	source ${VENV}/bin/activate

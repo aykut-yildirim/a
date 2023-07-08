@@ -12,17 +12,14 @@ BASE_URL = "127.0.0.1:5000"
 
 scraper = MynetScraper()
 link_list = scraper.get_link()
-
-
 @app.route("/", methods=["GET", "POST"])
 def index():
     """_summary_
-
     Returns:
         _type_: _description_
     """
     if request.method == "POST":
-        share_code = request.form.get("share_code")
+        share_code = str(request.form.get("share_code"))
         for link in link_list:
             if fnmatch.fnmatch(
                 link, "*" + "hisseler/" + "*" + share_code.lower() + "*"
@@ -65,13 +62,10 @@ class Dict(Resource):
     """
     def get(self):
         """_summary_
-
         Returns:
             _type_: _description_
         """
         return {"key": "value"}
-
-
 api.add_resource(Dict, "/dict")
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
